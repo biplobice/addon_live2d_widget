@@ -7,6 +7,7 @@ A concrete5 addon to show models from live2d widget on a concrete5 site.
 # Screenshots
 
 ![Screenshot](/Screenshots/screen-1.png?raw=true "Screenshot")
+![Screenshot](/Screenshots/screen-2.png?raw=true "Screenshot")
 
 
 # Widget Credit
