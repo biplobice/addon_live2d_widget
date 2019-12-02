@@ -6,7 +6,8 @@
  */
 
 return [
-    'model_selected' => 'tsumiki',
+    'enabled' => true,
+    'model_selected' => 'shizuku',
     'models' => [
         'chitose' => 'Chitose',
         'epsilon2_1' => 'Epsilon2_1',

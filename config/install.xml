@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+    <singlepages>
+        <page name="Live2D Widget Settings"
+              path="/dashboard/live2d_widget"
+              filename=""
+              pagetype=""
+              description=""
+              package="live2d_widget">
+        </page>
+    </singlepages>
+</concrete5-cif>

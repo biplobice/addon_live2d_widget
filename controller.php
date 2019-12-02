@@ -1,21 +1,20 @@
 <?php
 /**
  * concrete5 - Controller.php
- * Author: biplob
- * Date: 2018/04/17.
+ * Author: biplob.
  */
 namespace Concrete\Package\Live2dWidget;
 
-use Live2dWidget\Widget\Live2dWidgetServiceProvider;
 use Concrete\Core\Asset\AssetList;
 use Concrete\Core\Foundation\Service\ProviderList;
 use Concrete\Core\Package\Package;
+use Live2dWidget\Widget\Live2dWidgetServiceProvider;
 
 class Controller extends Package
 {
     protected $pkgHandle = 'live2d_widget';
     protected $appVersionRequired = '8.0.1';
-    protected $pkgVersion = '0.0.1';
+    protected $pkgVersion = '0.0.2';
 
     protected $pkgAutoloaderRegistries = [
         'src/Concrete' => '\Live2dWidget',
@@ -38,6 +37,18 @@ class Controller extends Package
         $this->addListeners();
     }
 
+    public function install()
+    {
+        parent::install();
+        $this->installContentFile('config/install.xml');
+    }
+
+    public function upgrade()
+    {
+        parent::upgrade();
+        $this->installContentFile('config/install.xml');
+    }
+
     protected function registerAssets(): void
     {
         $al = AssetList::getInstance();
@@ -54,10 +65,13 @@ class Controller extends Package
 
     protected function addListeners(): void
     {
-        $director = $this->app->make('director');
-        if (is_object($director)) {
-            $widget = $this->app->make('widget/live2d');
-            $director->addListener('on_before_render', [$widget, 'insert']);
+        $config = $this->app->make('config');
+        if ($config->get('live2d_widget::settings.enabled')) {
+            $director = $this->app->make('director');
+            if (is_object($director)) {
+                $widget = $this->app->make('widget/live2d');
+                $director->addListener('on_before_render', [$widget, 'insert']);
+            }
         }
     }
 }
